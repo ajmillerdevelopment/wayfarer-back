@@ -5,6 +5,16 @@ const controllers = require('../controllers');
 
 router.get('/', controllers.cities.index);
 
-router.get('/:id', controllers.cities.show);
+router.get('/:cityid', controllers.cities.show);
+
+router.get('/:cityid/:postid', controllers.posts.show)
+
+router.get('/:cityid/:postid/:commentid', controllers.posts.showComment)
+// new post
+// edit post
+// delete post
+// new comment
+// edit comment
+// delete comment
 
 module.exports = router;

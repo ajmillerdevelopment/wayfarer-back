@@ -1,5 +1,4 @@
 const db = require('../models');
-const { createCollection } = require('../models/Post');
 
 const index = (req, res) => {
     db.City.find({}, (err, allCities) => {
@@ -10,7 +9,7 @@ const index = (req, res) => {
 };
 
 const show = (req, res) => {
-    db.City.findById(req.params.id, (err, foundCity) => {
+    db.City.findById(req.params.cityid, (err, foundCity) => {
         if (err) return console.log(err);
 
         res.json(foundCity);

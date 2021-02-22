@@ -13,7 +13,7 @@ mongoose.connect(connectionString, {
 
 module.exports = {
     City: require('./City'),
-    Comment: require('/Comment'),
+    Comment: require('./Comment'),
     Post: require('./Post'),
     User: require('./User')
 };
