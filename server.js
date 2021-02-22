@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const routes = require('./routes');
 
 const PORT = process.env.PORT || 4000;
 
 
-
+app.use('/city', routes.cities)
 
 
 // Home Route
