@@ -17,8 +17,7 @@ router.post('/:cityid/', controllers.posts.create)
 
 router.put('/:cityid/:postid/', controllers.posts.edit)
 
-// edit post
-// delete post
+router.delete('/:cityid/:postid/', controllers.posts.destroy)
 // new comment
 // edit comment
 // delete comment

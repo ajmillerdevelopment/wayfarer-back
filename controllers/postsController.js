@@ -22,14 +22,25 @@ const create = (req, res) => {
         //ADD IMAGE UPLOAD
         if (err) throw err
         db.City.findByIdAndUpdate(cityid, {$push: {posts: newPost._id}}, {new: true}, (err, updatedUser) => {if (err) throw err})
+        //ADD TO USER
         res.json(newPost)
     })
 }
 
 const edit = (req, res) => {
     const postid = req.params.postid
-    db.Post.findByIdAndUpdate(postid, req.body, {new: true}, (err, updatedPost) => {if (err) {throw err} res.json()})
+    db.Post.findByIdAndUpdate(postid, req.body, {new: true}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
 
+}
+
+const destroy = (req, res) => {
+    const postid = req.params.postid
+    const cityid = req.params.cityid
+    db.Post.findByIdAndDelete(postid, (err, deletedPost) => {
+        if (err) throw err
+        db.City.findByIdAndUpdate(cityid, {$pull: {posts: deletedPost._id}}, {new: true}, (err, updatedCity) => {if (err) {throw err} res.json(updatedCity)})
+    })
+    
 }
 
 module.exports = {
@@ -37,4 +48,5 @@ module.exports = {
     showComment,
     create,
     edit,
+    destroy,
 };
