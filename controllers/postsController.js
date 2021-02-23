@@ -21,7 +21,7 @@ const create = (req, res) => {
     db.Post.create(req.body, (err, newPost) => {
         //ADD IMAGE UPLOAD
         if (err) throw err
-        db.City.findByIdAndUpdate(cityid, {$push: {posts: newPost._id}}, {new: true}, (err, updatedUser) => {if (err) throw err})
+        db.City.findByIdAndUpdate(cityid, {$push: {posts: newPost._id}}, (err, updatedUser) => {if (err) throw err})
         //ADD TO USER
         res.json(newPost)
     })
@@ -30,7 +30,6 @@ const create = (req, res) => {
 const edit = (req, res) => {
     const postid = req.params.postid
     db.Post.findByIdAndUpdate(postid, req.body, {new: true}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
-
 }
 
 const destroy = (req, res) => {
@@ -43,10 +42,36 @@ const destroy = (req, res) => {
     
 }
 
+const createComment = (req, res) => {
+    const postid = req.params.postid
+    db.Comment.create(req.body, (err, createdComment) => {
+        if (err) throw err
+        db.Post.findByIdAndUpdate(postid, {$push: {comments: createdComment._id}}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
+        // res.json(createdComment)
+    })
+}
+
+const editComment = (req, res) => {
+    const commentid = req.params.commentid
+    db.Comment.findByIdAndUpdate(commentid, req.body, {new: true}, (err, updatedComment) => {if (err) {throw err} res.json(updatedComment)})
+}
+
+const destroyComment = (req, res) => {
+    const commentid = req.params.commentid
+    const postid = req.params.postid
+    db.Comment.findByIdAndDelete(commentid, (err, deletedComment) => {
+        if (err) throw err
+        db.Post.findByIdAndUpdate(postid, {$pull: {comments: deletedComment._id}}, {new: true}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
+    })
+}
+
 module.exports = {
     show,
     showComment,
     create,
     edit,
     destroy,
+    createComment,
+    editComment,
+    destroyComment
 };

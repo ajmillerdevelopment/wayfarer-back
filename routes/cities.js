@@ -18,8 +18,11 @@ router.post('/:cityid/', controllers.posts.create)
 router.put('/:cityid/:postid/', controllers.posts.edit)
 
 router.delete('/:cityid/:postid/', controllers.posts.destroy)
-// new comment
-// edit comment
-// delete comment
+
+router.post('/:cityid/:postid/', controllers.posts.createComment)
+
+router.put('/:cityid/:postid/:commentid/', controllers.posts.editComment)
+
+router.delete('/:cityid/:postid/:commentid/', controllers.posts.destroyComment)
 
 module.exports = router;
