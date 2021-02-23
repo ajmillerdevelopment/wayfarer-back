@@ -12,7 +12,9 @@ router.post('/', controllers.cities.create)
 router.get('/:cityid/:postid', controllers.posts.show)
 
 router.get('/:cityid/:postid/:commentid', controllers.posts.showComment)
-// new post
+
+router.post('/:cityid/', controllers.posts.create)
+
 // edit post
 // delete post
 // new comment
