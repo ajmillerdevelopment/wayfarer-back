@@ -16,7 +16,16 @@ const show = (req, res) => {
     });
 };
 
+const create = (req, res) => {
+    console.log(req.body)
+    db.City.create(req.body, (err, newCity) => {
+        if (err) throw err
+        res.json(newCity)
+    })
+}
+
 module.exports = {
     index,
     show,
+    create
 };
