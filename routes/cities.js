@@ -15,6 +15,8 @@ router.get('/:cityid/:postid/:commentid', controllers.posts.showComment)
 
 router.post('/:cityid/', controllers.posts.create)
 
+router.put('/:cityid/:postid/', controllers.posts.edit)
+
 // edit post
 // delete post
 // new comment
