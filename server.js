@@ -7,12 +7,10 @@ const routes = require('./routes');
 const PORT = process.env.PORT || 4000;
 const cors = require('cors')
 
-<<<<<<< HEAD
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/city', routes.cities)
-=======
 // BODY PARSER
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,7 +27,6 @@ app.use(session({
 // ROUTES
 app.use('/city', routes.cities);
 app.use('/users', routes.users);
->>>>>>> submaster
 
 
 // Home Route
