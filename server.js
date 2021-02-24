@@ -6,14 +6,11 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const PORT = process.env.PORT || 4000;
 const cors = require('cors')
+const controllers = require('./controllers');
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use('/city', routes.cities)
-// BODY PARSER
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 // SESSION
 app.use(session({
     secret: "secrets are no fun",
@@ -25,9 +22,20 @@ app.use(session({
 }));
 
 // ROUTES
-app.use('/city', routes.cities);
 app.use('/users', routes.users);
 
+app.get('/city', controllers.cities.index);
+app.get('/city/:cityid', controllers.cities.show);
+app.get('/post', controllers.posts.index);
+app.post('/city', controllers.cities.create)
+app.get('/post/:postid', controllers.posts.show)
+app.get('/comment/:commentid', controllers.posts.showComment)
+app.post('/post', controllers.posts.create)
+app.put('/post', controllers.posts.edit)
+app.delete('/post', controllers.posts.destroy)
+app.post('/comment', controllers.comments.create)
+app.put('/comment', controllers.comments.edit)
+app.delete('/comment', controllers.comments.destroy)
 
 // Home Route
 app.get('/', (req, res) => {
