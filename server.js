@@ -24,18 +24,18 @@ app.use(session({
 // ROUTES
 app.use('/users', routes.users);
 
-app.get('/city', controllers.cities.index);
-app.get('/city/:cityid', controllers.cities.show);
-app.get('/post', controllers.posts.index);
+app.get('/cities', controllers.cities.index);
+app.get('/city', controllers.cities.show);
+app.get('/posts', controllers.posts.index);
 app.post('/city', controllers.cities.create)
-app.get('/post/:postid', controllers.posts.show)
-app.get('/comment/:commentid', controllers.posts.showComment)
+app.get('/post', controllers.posts.show)
+app.get('/comment/', controllers.comments.show)
 app.post('/post', controllers.posts.create)
 app.put('/post', controllers.posts.edit)
-app.delete('/post', controllers.posts.destroy)
-app.post('/comment', controllers.comments.create)
-app.put('/comment', controllers.comments.edit)
-app.delete('/comment', controllers.comments.destroy)
+app.delete('/post/', controllers.posts.destroy)
+app.post('/comment/', controllers.comments.create)
+app.put('/comment/', controllers.comments.edit)
+app.delete('/comment/', controllers.comments.destroy)
 
 // Home Route
 app.get('/', (req, res) => {

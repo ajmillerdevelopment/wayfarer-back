@@ -23,9 +23,16 @@ const destroy = (req, res) => {
     })
 }
 
+const show = (req, res) => {
+    db.Comment.findById(req.body._id, (err, foundComment) => {
+        if (err) throw err
+        res.json(foundComment)
+    })
+}
 
 module.exports = {
     create,
     edit,
     destroy,
+    show
 };
