@@ -1,5 +1,13 @@
 const db = require('../models');
 
+const index = (req, res) => {
+    db.Post.find({}, (err, allPosts) => {
+        if (err) throw err;
+
+        res.json(allPosts);
+    });
+};
+
 const show = (req, res) => {
     db.Post.findById(req.params.postid, (err, foundPost) => {
         if (err) return console.log(err);
@@ -66,6 +74,7 @@ const destroyComment = (req, res) => {
 }
 
 module.exports = {
+    index,
     show,
     showComment,
     create,
