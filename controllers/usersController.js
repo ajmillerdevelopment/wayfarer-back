@@ -47,21 +47,7 @@ const login = (req, res) => {
     })
 };
 
-// PROFILE AFTER LOGIN
-const profile = (req, res) => {
-    if (!req.session.user) {
-        res.send('User not logged in');
-    }
-
-    db.User.findById(req.session.user._id, (err, foundUser) => {
-        if (err) throw err;
-
-        res.json(foundUser);
-    })
-};
-
 module.exports = {
     signup,
     login,
-    profile,
 };

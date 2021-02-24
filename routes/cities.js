@@ -7,6 +7,8 @@ router.get('/', controllers.cities.index);
 
 router.get('/:cityid', controllers.cities.show);
 
+router.get('/:cityid/posts', controllers.posts.index);
+
 router.post('/', controllers.cities.create)
 
 router.get('/:cityid/:postid', controllers.posts.show)

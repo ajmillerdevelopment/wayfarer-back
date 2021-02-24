@@ -9,6 +9,5 @@ const controllers = require('../controllers');
 
 router.post('/signup', controllers.users.signup);
 router.post('/login', controllers.users.login);
-router.get('/profile', controllers.users.profile);
 
 module.exports = router;
