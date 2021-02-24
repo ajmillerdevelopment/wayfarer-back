@@ -33,9 +33,9 @@ app.get('/comment/:commentid', controllers.posts.showComment)
 app.post('/post', controllers.posts.create)
 app.put('/post', controllers.posts.edit)
 app.delete('/post', controllers.posts.destroy)
-app.post('/comment', controllers.posts.createComment)
-app.put('/comment', controllers.posts.editComment)
-app.delete('/comment', controllers.posts.destroyComment)
+app.post('/comment', controllers.comments.create)
+app.put('/comment', controllers.comments.edit)
+app.delete('/comment', controllers.comments.destroy)
 
 // Home Route
 app.get('/', (req, res) => {
