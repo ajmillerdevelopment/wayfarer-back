@@ -4,7 +4,7 @@ const create = (req, res) => {
     const postid = req.body.post
     db.Comment.create(req.body, (err, createdComment) => {
         if (err) throw err
-        db.Post.findByIdAndUpdate(postid, {$push: {comments: createdComment._id}}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
+        db.Post.findByIdAndUpdate(postid, {$push: {comments: createdComment._id}}, (err, updatedPost) => {if (err) {throw err}})
         res.json(createdComment)
     })
 }
@@ -19,7 +19,8 @@ const destroy = (req, res) => {
     const postid = req.body.postid
     db.Comment.findByIdAndDelete(commentid, (err, deletedComment) => {
         if (err) throw err
-        db.Post.findByIdAndUpdate(postid, {$pull: {comments: deletedComment._id}}, {new: true}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
+        db.Post.findByIdAndUpdate(postid, {$pull: {comments: deletedComment._id}}, {new: true}, (err, updatedPost) => {if (err) {throw err}})
+        res.json(deletedComment)
     })
 }
 
