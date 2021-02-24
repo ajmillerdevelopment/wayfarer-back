@@ -5,7 +5,8 @@ const postSchema = new mongoose.Schema({
     body: {type: String, required: true},
     photos: [{url: String}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    city: {type: mongoose.Schema.Types.ObjectId, ref: 'City'}
 }, {timestamps: true})
 const Post = mongoose.model('Post', postSchema)
 module.exports = Post;
