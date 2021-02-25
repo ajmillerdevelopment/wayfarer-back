@@ -24,15 +24,12 @@ app.use(session({
 // ROUTES
 app.use('/users', routes.users);
 
-<<<<<<< HEAD
 app.get('/cities', controllers.cities.index)
 app.get('/city', controllers.cities.show)
 app.get('/posts', controllers.posts.index)
-=======
 app.get('/cities', controllers.cities.index);
 app.get('/city/:cityid', controllers.cities.show); 
 app.get('/posts', controllers.posts.index);
->>>>>>> master
 app.post('/city', controllers.cities.create)
 app.get('/post/:postid', controllers.posts.show)
 app.get('/comment/:commentid', controllers.comments.show) 
