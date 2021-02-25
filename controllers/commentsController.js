@@ -25,7 +25,7 @@ const destroy = (req, res) => {
 }
 
 const show = (req, res) => {
-    db.Comment.findById(req.body._id, (err, foundComment) => {
+    db.Comment.findById(req.params.commentid, (err, foundComment) => {
         if (err) throw err
         res.json(foundComment)
     })

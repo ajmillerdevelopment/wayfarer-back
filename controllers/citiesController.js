@@ -9,7 +9,7 @@ const index = (req, res) => {
 };
 
 const show = (req, res) => {
-    db.City.findById(req.body._id, (err, foundCity) => {
+    db.City.findById(req.params.cityid, (err, foundCity) => {
         if (err) return console.log(err);
 
         res.json(foundCity);
