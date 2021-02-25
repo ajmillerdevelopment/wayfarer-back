@@ -9,7 +9,7 @@ const index = (req, res) => {
 };
 
 const show = (req, res) => {
-    db.Post.findById(req.body._id, (err, foundPost) => {
+    db.Post.findById(req.params.postid, (err, foundPost) => {
         if (err) return console.log(err);
 
         res.json(foundPost);
@@ -22,7 +22,7 @@ const create = (req, res) => {
     db.Post.create(req.body, (err, newPost) => {
         //ADD IMAGE UPLOAD
         if (err) throw err
-        db.City.findByIdAndUpdate(cityid, {$push: {posts: newPost._id}}, (err, updatedCity) => {if (err) {throw err} res.json(updatedCity)} )
+        db.City.findByIdAndUpdate(cityid, {$push: {posts: newPost._id}}, (err, updatedCity) => {if (err) {throw err}} )
         //ADD TO USER
         res.json(newPost)
     })
@@ -56,34 +56,12 @@ const destroy = (req, res) => {
     const cityid = req.body.cityid
     db.Post.findByIdAndDelete(postid, (err, deletedPost) => {
         if (err) throw err
-        db.Comment.deleteMany({post: deletedPost._id}, (err, deletedComments) => {if (err) {throw err} res.json(deletedComments)})
-        db.City.findByIdAndUpdate(cityid, {$pull: {posts: deletedPost._id}}, {new: true}, (err, updatedCity) => {if (err) {throw err} res.json(updatedCity)})
+        db.Comment.deleteMany({post: deletedPost._id}, (err, deletedComments) => {if (err) {throw err}})
+        db.City.findByIdAndUpdate(cityid, {$pull: {posts: deletedPost._id}}, {new: true}, (err, updatedCity) => {if (err) {throw err}})
+        res.json(deletedPost)
     })
     
 }
-
-// const createComment = (req, res) => {
-//     const postid = req.body.post
-//     db.Comment.create(req.body, (err, createdComment) => {
-//         if (err) throw err
-//         db.Post.findByIdAndUpdate(postid, {$push: {comments: createdComment._id}}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
-//         // res.json(createdComment)
-//     })
-// }
-
-// const editComment = (req, res) => {
-//     const commentid = req.body._id
-//     db.Comment.findByIdAndUpdate(commentid, req.body, {new: true}, (err, updatedComment) => {if (err) {throw err} res.json(updatedComment)})
-// }
-
-// const destroyComment = (req, res) => {
-//     const commentid = req.body._id
-//     const postid = req.body.postid
-//     db.Comment.findByIdAndDelete(commentid, (err, deletedComment) => {
-//         if (err) throw err
-//         db.Post.findByIdAndUpdate(postid, {$pull: {comments: deletedComment._id}}, {new: true}, (err, updatedPost) => {if (err) {throw err} res.json(updatedPost)})
-//     })
-// }
 
 module.exports = {
     index,
