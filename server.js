@@ -25,11 +25,11 @@ app.use(session({
 app.use('/users', routes.users);
 
 app.get('/cities', controllers.cities.index);
-app.get('/city', controllers.cities.show);
+app.get('/city', controllers.cities.show); //Inop, needs fixing back to params method
 app.get('/posts', controllers.posts.index);
 app.post('/city', controllers.cities.create)
-app.get('/post', controllers.posts.show)
-app.get('/comment/', controllers.comments.show)
+app.get('/post/:postid', controllers.posts.show)
+app.get('/comment/', controllers.comments.show) //Inop, needs fixing back to params method
 app.post('/post', controllers.posts.create)
 app.put('/post', controllers.posts.edit)
 app.delete('/post/', controllers.posts.destroy)
